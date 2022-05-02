@@ -9,28 +9,33 @@
     <div>
         <label>Email</label>
         <input type="email" formControlName="email" placeholder="Type your email" />
-        <span *ngIf="username.invalid&&username.touched">* Username must be valid</span>
+        <span *ngIf="email.invalid&&email.touched">* Username must be valid</span>
     </div>
 
     <div>
         <label>Password</label>
         <input type="password" formControlName="password" placeholder="Type your password" />
+        <span *ngIf="password.invalid&&password.touched">* Password must have at least 6 characters</span>
     </div>
 
     <div>
         <label>First name</label>
         <input type="text" formControlName="firstname" placeholder="Type your first name" />
+        <span *ngIf="firstname.invalid&&firstname.touched">* First name must have at least 2 characters</span>
     </div>
 
 
     <div>
         <label>Last name</label>
         <input type="text" formControlName="lastname" placeholder="Type your last name" />
+        <span *ngIf="lastname.invalid&&lastname.touched">* Last name must have at least 2 characters</span>
     </div>
 
     <div>
-        <label>Age name</label>
+        <label>Age </label>
         <input type="number" formControlName="age" placeholder="Type your age" min="6" max="130" />
+        <span *ngIf="age.invalid&&age.touched">* Age must be between 6 and 130 years</span>
+
     </div>
 
 
