@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/auth.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
+  message = '';
   registerForm = new FormGroup({
     username: new FormControl('', [
       Validators.required,
@@ -59,8 +60,25 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.get('age') as FormControl;
   }
 
-  register() {
-    this.authService.signUp(this.email.value, this.password.value);
+  async register() {
+    try {
+      await this.authService.signUp(this.email.value, this.password.value);
+      this.message = 'Register successful!';
+      this.username.setValue('');
+      this.email.setValue('');
+      this.password.setValue('');
+      this.firstname.setValue('');
+      this.lastname.setValue('');
+      this.age.setValue('');
+      this.username.markAsUntouched();
+      this.email.markAsUntouched();
+      this.password.markAsUntouched();
+      this.firstname.markAsUntouched();
+      this.lastname.markAsUntouched();
+      this.age.markAsUntouched();
+    } catch (err) {
+      this.message = 'Register failed!';
+    }
   }
 
   ngOnInit(): void {}
