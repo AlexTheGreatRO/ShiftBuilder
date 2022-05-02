@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { first } from 'rxjs';
 import { AuthService } from 'src/app/auth.service';
+import { FirestoreService } from 'src/app/firestore.service';
 
 @Component({
   selector: 'app-register',
@@ -34,7 +36,10 @@ export class RegisterComponent implements OnInit {
     ]),
   });
 
-  constructor(public authService: AuthService) {}
+  constructor(
+    public authService: AuthService,
+    public fireStoreService: FirestoreService
+  ) {}
 
   get username() {
     return this.registerForm.get('username') as FormControl;
@@ -63,6 +68,14 @@ export class RegisterComponent implements OnInit {
   async register() {
     try {
       await this.authService.signUp(this.email.value, this.password.value);
+
+      const username = this.username.value;
+      const email = this.email.value;
+      const firstname = this.firstname.value;
+      const lastname = this.lastname.value;
+      const age = this.age.value;
+
+      this.fireStoreService.addUser(username, firstname, lastname, email, age);
       this.message = 'Register successful!';
       this.username.setValue('');
       this.email.setValue('');
