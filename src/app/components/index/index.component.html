@@ -1,2 +1,6 @@
-<a routerLink="/register">Register</a>
-<a routerLink="/login">Log In</a>
+<a routerLink="/register">Register</a><br>
+<a routerLink="/login">Log In</a><br>
+
+<button (click)="logOut()" *ngIf="userProfile">Log Out!</button>
+
+<h2 *ngIf="userProfile">Hello, {{userProfile?.firstname }}</h2>
