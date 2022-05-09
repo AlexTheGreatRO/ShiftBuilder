@@ -1,0 +1,23 @@
+<form [formGroup]="loginForm">
+
+
+    <div>
+        <label>Email</label>
+        <input type="email" formControlName="email" placeholder="Type your email" />
+        <span *ngIf="email.invalid&&email.touched">* Username must be valid</span>
+    </div>
+
+    <div>
+        <label>Password</label>
+        <input type="password" formControlName="password" placeholder="Type your password" />
+        <span *ngIf="password.invalid&&password.touched">* Password must have at least 6 characters</span>
+    </div>
+
+    <div>
+        <button type="submit" (click)="login()" [disabled]="loginForm.invalid">Log In</button>
+    </div>
+
+    <div>
+        {{message}}
+    </div>
+</form>
