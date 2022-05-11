@@ -1,0 +1,51 @@
+<h3>Add shift</h3>
+
+<form [formGroup]="addShiftForm">
+
+    <div>
+        <label>Date</label>
+        <input type="date" formControlName="date" placeholder="" />
+        <span *ngIf="date.invalid&&date.touched">* Date must be specified</span>
+    </div>
+
+    <div>
+        <label>Start time</label>
+        <input type="number" formControlName="startTime" placeholder="7" min="0" max="23" />
+        <span *ngIf="startTime.invalid&&startTime.touched">* Start time must be specified and between 0 and 23</span>
+    </div>
+
+    <div>
+        <label>End time</label>
+        <input type="number" formControlName="endTime" placeholder="15" min="0" max="23" />
+        <span *ngIf="endTime.invalid&&endTime.touched">* End time must be specified and between 0 and 23</span>
+    </div>
+
+    <div>
+        <label>Hourly Wage</label>
+        <input type="number" formControlName="hourlyWage" placeholder="100" min="0" />
+        <span *ngIf="hourlyWage.invalid&&hourlyWage.touched">* Hourly Wage must be specified</span>
+    </div>
+
+    <div>
+        <label>Workplace</label>
+        <select formControlName="workPlace">
+            <option>Bucuresti</option>
+            <option>Suceava</option>
+            <option>Bacau</option>
+        </select>
+        <span *ngIf="workPlace.invalid&&workPlace.touched">* Workplace must be specified</span>
+    </div>
+
+    <div>
+        <label>Shift name</label>
+        <input type="text" formControlName="shiftName" placeholder="the best shift" />
+        <span *ngIf="shiftName.invalid&&shiftName.touched">* Shift name must be specified</span>
+    </div>
+
+    <div>
+        <label>Comments</label>
+        <textarea formControlName="comments" placeholder="12 hour shift"></textarea>
+    </div>
+
+    <button (click)="addShift()" [disabled]="addShiftForm.invalid">Save shift!</button>
+</form>

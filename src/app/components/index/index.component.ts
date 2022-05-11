@@ -8,15 +8,5 @@ import { UserProfile } from 'src/app/data/user.profile';
   styleUrls: ['./index.component.css'],
 })
 export class IndexComponent implements OnInit {
-  logOut() {
-    this.authservice.logOut();
-    this.userProfile = undefined;
-  }
-  userProfile?: UserProfile;
-
-  constructor(private authservice: AuthService) {}
-
-  ngOnInit(): void {
-    this.userProfile = this.authservice.getCurrentUser();
-  }
+  ngOnInit(): void {}
 }
