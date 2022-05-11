@@ -62,7 +62,12 @@ export class AddShiftComponent implements OnInit {
     return this.addShiftForm.get('comments') as FormControl;
   }
 
-  async addShift() {}
+  async addShift() {
+    if (this.startTime.value > this.endTime.value) {
+      alert('Start time must be before end time!');
+      return;
+    }
+  }
 
   ngOnInit(): void {}
 }
